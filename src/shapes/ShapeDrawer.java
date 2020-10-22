@@ -2,25 +2,19 @@ package shapes;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-
 import controller.interfaces.ICommand;
 import model.interfaces.IShapeDrawer;
 import model.interfaces.IShapeList;
 import model.interfaces.IShapes;
-import model.persistence.ApplicationState;
 
 import view.interfaces.PaintCanvasBase;
 
 public class ShapeDrawer implements IShapeDrawer {
 
 	PaintCanvasBase paintCanvas;
-	ApplicationState app_state;
 	ICommand cmd;
 
-	public ShapeDrawer(PaintCanvasBase pcb, ApplicationState appState) {
-		paintCanvas = pcb;
-		app_state = appState;
-	}
+	public ShapeDrawer(PaintCanvasBase pcb) { paintCanvas = pcb; }
 
 	public void draw( IShapeList shapes ) {		
 		//draw blank white rectangle to 'clear' canvas

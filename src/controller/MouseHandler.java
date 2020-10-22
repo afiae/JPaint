@@ -5,11 +5,7 @@ import java.awt.event.MouseEvent;
 
 import controller.interfaces.ICommand;
 import controller.interfaces.IShapeConfiguration;
-import model.ShapeColor;
-import model.ShapeShadingType;
-import model.ShapeType;
 import model.interfaces.IShapeList;
-import model.interfaces.IShapes;
 import model.persistence.ApplicationState;
 import point.Point;
 import shapes.ShapeConfiguration;
@@ -22,7 +18,7 @@ public class MouseHandler extends MouseAdapter {
 	private static Point start;
 	private static Point end;
 	private static IShapeList shapeList;
-	
+	//private static IShapeList selected;
 
 	public MouseHandler(PaintCanvasBase paintCanvas, ApplicationState AS, ShapeList SL) { 
 		pcb = paintCanvas;
@@ -38,7 +34,7 @@ public class MouseHandler extends MouseAdapter {
 	@Override
 	public void mouseReleased ( MouseEvent e ) { 
 		end = new Point(e.getX(), e.getY());
-		
+		//selected = new SelectedShapeList(shapeList, pcb);
 		ICommand cmd;
 		
 		switch(as.getActiveMouseMode()) {
@@ -58,9 +54,4 @@ public class MouseHandler extends MouseAdapter {
 		}
 		cmd.run();
 	}
-	
-	//public static Point getStartPt() { return start; }
-	//public static Point getEndPt() { return end; }
-	//public static PaintCanvasBase getPaintCanvas() { return pcb; }
-	//public static IShapeList getShapeList() { return shapeList; }
 }

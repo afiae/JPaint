@@ -1,7 +1,10 @@
 package shapes;
 
 import java.awt.BasicStroke;
+import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Stroke;
+
 import controller.interfaces.ICommand;
 import model.interfaces.IShapes;
 import view.interfaces.PaintCanvasBase;
@@ -39,6 +42,8 @@ public class DrawEllipse implements ICommand {
 			throw new Error("Are you sure you'd like to draw an ellipse?");
 		}
 		
+		if(ellipse.isSelected()) selectedEllipse();
+		
 	}
 
 	private void drawFilled() {
@@ -56,6 +61,13 @@ public class DrawEllipse implements ICommand {
 		graphics2d.drawOval(minX, minY, wd, ht);
 	}
 
-
+	private void selectedEllipse(){
+		Graphics2D graphics2d = paintCanvas.getGraphics2D();
+		Stroke stroke = new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 1, new float[]{9},0);
+		graphics2d.setStroke(stroke);
+		graphics2d.setColor(Color.GRAY);
+		graphics2d.drawOval(Math.min(ellipse.getEndX(), ellipse.getStartX())-5, 
+				Math.min(ellipse.getEndY(), ellipse.getStartY())-5, ellipse.getWidth()+10, ellipse.getHeight()+10);
+	}
 
 }

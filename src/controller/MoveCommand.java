@@ -9,34 +9,37 @@ import point.Point;
 public class MoveCommand implements ICommand, IUndoable{
 
 	private int dx, dy;
-	IShapeList selectedShapes;
+	IShapeList shapes;
 
-
-	public MoveCommand(Point pressed, Point released, IShapeList selected) {
+	public MoveCommand(Point pressed, Point released, IShapeList shapes) {
 		dx = released.getX() - pressed.getX();
 		dy = released.getY() - pressed.getY();
-		selectedShapes = selected;
-
+		this.shapes = shapes;
+		CommandHistory.add(this);
 	}
 
 
 	public void run() { 
-		//if same point by click
+		//if not same point by click
 		if(!(dx == 0 && dy == 0)) { 
-			for(IShapes s : selectedShapes.getShapeList()) {
-				s.move(dx, dy);
+			for(IShapes s : shapes.getShapeList()) {
+				if(s.isSelected()) { 
+					s.move(dx, dy);
+				}
 			}
 		}
-
+		shapes.notifyObservers();
 	}
 
 	@Override
 	public void undo() {
-		// TODO Auto-generated method stub
 		//subtract dx and dy
-		for(IShapes s : selectedShapes.getShapeList()) {
-			s.move(-dx, -dy);
+		for(IShapes s : shapes.getShapeList()) {
+			if(s.isSelected()) {
+				s.move(-dx, -dy);
+			}
 		}
+		shapes.notifyObservers();
 	}
 
 	@Override
