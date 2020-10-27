@@ -12,18 +12,18 @@ import shapes.Shape;
 public class CreateShapeCommand implements ICommand, IUndoable{
 	
 	IShapes s;
-	IShapeList shapeList;
+	IShapeList masterList;
 	
-	public CreateShapeCommand (Point start, Point end, IShapeConfiguration config, IShapeList sl) {
-		shapeList = sl;
+	public CreateShapeCommand (Point start, Point end, IShapeConfiguration config, IShapeList masterList) {
+		this.masterList = masterList;
 		s = new Shape(start, end, config);
 		CommandHistory.add(this);
 	}
-	
-	public void run() {	shapeList.add(s); }
+		
+	public void run() {	masterList.add(s); }
 
 	@Override
-	public void undo() { shapeList.remove(s); }
+	public void undo() { masterList.remove(s); }
 
 	@Override
 	public void redo() { run(); }

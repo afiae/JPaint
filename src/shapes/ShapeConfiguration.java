@@ -18,8 +18,7 @@ public class ShapeConfiguration implements IShapeConfiguration {
 		primary = ShapeColor.getColor(pri);
 		secondary = ShapeColor.getColor(sec);
 		SST = sst;
-	}
-	
+	}	
 	
 	public ShapeType getShapeType() { return shape_type; }
 	

@@ -1,28 +1,22 @@
 package controller;
 
 import controller.interfaces.ICommand;
-import controller.interfaces.IUndoable;
+import model.interfaces.IShapeList;
+import model.interfaces.IShapes;
 
-public class CopyCommand implements ICommand, IUndoable{
-	
+public class CopyCommand implements ICommand{
+
+	private IShapeList clipboard, selectedList;
+
+	public CopyCommand(IShapeList clipboard, IShapeList selectedList) {
+		this.clipboard = clipboard; 
+		this.selectedList = selectedList;
+	}
+
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
-		
+		for(IShapes shape : selectedList.getShapeList()) {	
+			clipboard.add(shape);
+		}
 	}
-
-
-	@Override
-	public void undo() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void redo() {
-		// TODO Auto-generated method stub
-		
-	}
-
-
 }

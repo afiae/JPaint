@@ -9,21 +9,21 @@ import model.interfaces.IShapeList;
 import model.persistence.ApplicationState;
 import point.Point;
 import shapes.ShapeConfiguration;
-import shapes.ShapeList;
 import view.interfaces.PaintCanvasBase;
 
 public class MouseHandler extends MouseAdapter {
-	private static PaintCanvasBase pcb;
-	private static ApplicationState as;
-	private static Point start;
-	private static Point end;
-	private static IShapeList shapeList;
-	//private static IShapeList selected;
+	private PaintCanvasBase paintCanvas;
+	private ApplicationState as;
+	private Point start;
+	private Point end;
+	private IShapeList masterList;
+	private IShapeList selectedList;
 
-	public MouseHandler(PaintCanvasBase paintCanvas, ApplicationState AS, ShapeList SL) { 
-		pcb = paintCanvas;
-		as = AS;
-		shapeList = SL;
+	public MouseHandler(PaintCanvasBase paintCanvas, ApplicationState as, IShapeList masterList, IShapeList selectedList) { 
+		this.paintCanvas = paintCanvas;
+		this.as = as;
+		this.masterList= masterList;
+		this.selectedList = selectedList;		
 	}
 
 	@Override
@@ -41,13 +41,13 @@ public class MouseHandler extends MouseAdapter {
 		case DRAW:
 			IShapeConfiguration config = new ShapeConfiguration(as.getActiveShapeType(), as.getActiveShapeShadingType(), 
 																as.getActivePrimaryColor(), as.getActiveSecondaryColor());
-			cmd = new CreateShapeCommand(start, end, config, shapeList);
+			cmd = new CreateShapeCommand(start, end, config, masterList);
 			break;
 		case MOVE:
-			cmd = new MoveCommand(start, end, shapeList);
+			cmd = new MoveCommand(start, end, selectedList);
 			break;
 		case SELECT:
-			cmd = new SelectCommand(start, end, shapeList, pcb);
+			cmd = new SelectCommand(start, end, masterList, selectedList, paintCanvas);
 			break;
 		default:
 			throw new Error("I didn't get that. Please try again");

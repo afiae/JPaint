@@ -44,6 +44,10 @@ public class Shape implements IShapes {
 	public int getHeight() { return ht; }	
 
 	public int getWidth() { return wd; }	
+	
+	public Point getStart() { return start; }
+	
+	public Point getEnd() { return end; }
 
 	public int getStartX() { return start.getX(); }
 

@@ -16,16 +16,16 @@ public class ShapeDrawer implements IShapeDrawer {
 
 	public ShapeDrawer(PaintCanvasBase pcb) { paintCanvas = pcb; }
 
-	public void draw( IShapeList shapes ) {		
+	public void draw( IShapeList masterList ) {		
 		//draw blank white rectangle to 'clear' canvas
 		Graphics2D g = paintCanvas.getGraphics2D();
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, 90000, 90000);
 
-		if(shapes.getShapeList().size() < 1) return;
+		if(masterList.getShapeList().size() < 1) return;
 
 		//iterate through list and redraw all shapes		
-		for(IShapes s: shapes.getShapeList()) {
+		for(IShapes s: masterList.getShapeList()) {
 			switch (s.getShapeConfiguration().getShapeType()) {
 			case RECTANGLE:
 				cmd = new DrawRectangle(paintCanvas, s);

@@ -1,47 +1,45 @@
 package shapes;
 
-import java.awt.BasicStroke;
-import java.awt.Stroke;
 import java.util.ArrayList;
-
-import model.interfaces.IShapeDrawer;
 import model.interfaces.IShapeList;
 import model.interfaces.IShapes;
-import view.interfaces.PaintCanvasBase;
 
 public class SelectedShapeList implements IShapeList{
 
-	ArrayList<IShapes> selectedShapeList;
-	IShapeList shapeList;
-	IShapes selectedArea;
-	PaintCanvasBase pcb;
+	private ArrayList<IShapes> selectedShapes;
+	private IShapeList masterList;
 
-	public SelectedShapeList(IShapeList shape_list, PaintCanvasBase paintCanvas) {
-		shapeList = shape_list;
-		selectedShapeList = new ArrayList<>();	
-		pcb = paintCanvas;
+	public SelectedShapeList( IShapeList masterList ) {
+		selectedShapes = new ArrayList<IShapes>();	
+		this.masterList = masterList;
 	}
 
 	@Override
-	public void add(IShapes shape) { 
+	public void add(IShapes shape) {
 		shape.select();
-		selectedShapeList.add(shape); 
+		selectedShapes.add(shape);
 		notifyObservers();
 	}
 
 	@Override
-	public void remove(IShapes shape) { 
-		selectedShapeList.remove(shape); 
+	public void remove(IShapes shape) {
+		shape.deselect();
+		selectedShapes.remove(shape);
 		notifyObservers();
 	}
-
-	@Override
-	public ArrayList<IShapes> getShapeList() { return selectedShapeList; }
 
 	@Override
 	public void notifyObservers() {
-		IShapeDrawer SD = new OutlineSelectedShape(pcb);
-		SD.draw(shapeList);
+		masterList.notifyObservers();
+	}
 
+	@Override
+	public ArrayList<IShapes> getShapeList() {
+		return selectedShapes;
+	}
+
+	@Override
+	public void emptyList() {
+		selectedShapes.clear();		
 	}
 }

@@ -9,37 +9,40 @@ import view.interfaces.PaintCanvasBase;
 
 public class SelectCommand implements ICommand{
 
-	Point _start, _end;
-	IShapeList shapeList;
+	private IShapeList masterList, selectedList;
 	int minX, maxX, minY, maxY;
 	PaintCanvasBase paintCanvas;
 
-	public SelectCommand(Point start, Point end, IShapeList shape_list, PaintCanvasBase pcb) {
-		_start = start;
-		_end = end;
-		paintCanvas = pcb;
-		shapeList = shape_list;	
+	public SelectCommand(Point start, Point end, IShapeList masterList, IShapeList selectedList, PaintCanvasBase paintCanvas) {
+
+		this.paintCanvas = paintCanvas;
+		this.masterList = masterList;
+		this.selectedList = selectedList;
 
 		minX = Math.min(start.getX(), end.getX());
 		maxX = Math.max(start.getX(), end.getX());
 		minY = Math.min(start.getY(), end.getY());
 		maxY = Math.max(start.getY(), end.getY());	
-		
+
 		refresh();
 	}
 
 	private void refresh() {
-		for(IShapes s : shapeList.getShapeList()) {
+		for(IShapes s : selectedList.getShapeList()) {
 			s.deselect();
-			shapeList.notifyObservers();
 		}
+		selectedList.emptyList();
+		masterList.notifyObservers();
 	}
-	
+
 	public void run() {
-		for(IShapes shape : shapeList.getShapeList()) {
-			if(isSelected(shape)) shape.select();	
+		for(IShapes shape : masterList.getShapeList()) {
+			if(isSelected(shape)) {
+				shape.select();	
+				selectedList.add(shape);
+				selectedList.notifyObservers();
+			}
 		}		
-		shapeList.notifyObservers();
 	}
 
 	private boolean isSelected(IShapes shape) {
