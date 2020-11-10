@@ -18,7 +18,9 @@ public class Main {
 		PaintCanvasBase paintCanvas = new PaintCanvas();
 		IGuiWindow guiWindow = new GuiWindow(paintCanvas);
 		IUiModule uiModule = new Gui(guiWindow);
-		ApplicationState appState = new ApplicationState(uiModule);		
+		ApplicationState appState = new ApplicationState(uiModule);	
+		
+		//instantiates a ShapeList, SelectedList, and CopiedList
 		ListHolder listHolder = new ListHolder(paintCanvas);
 		IJPaintController controller = new JPaintController(uiModule, appState, listHolder);
 		controller.setup();

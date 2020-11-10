@@ -11,16 +11,14 @@ public class ListHolder {
 	private IShapeList masterList;
 	private IShapeList selectedList;
 	private IShapeList clipboard;
-	
-	private IShapeList allLists;
+	//private IShapeList allLists;
 		
 	public ListHolder(PaintCanvasBase paintCanvas) {
 		masterList = new ShapeList(paintCanvas);
 		selectedList = new SelectedShapeList(masterList);
-		clipboard = new CopiedList(selectedList);
-		
+		clipboard = new CopiedList();		
 		//this isn't really used, however, the Decorator pattern is observed
-		allLists = new CopiedList(new SelectedShapeList( new ShapeList(paintCanvas)));
+		//allLists = new CopiedList(new SelectedShapeList( new ShapeList(paintCanvas)));
 		
 	}
 

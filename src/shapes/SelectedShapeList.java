@@ -40,6 +40,7 @@ public class SelectedShapeList implements IShapeList{
 
 	@Override
 	public void emptyList() {
+		for(IShapes s: selectedShapes) { s.deselect(); }
 		selectedShapes.clear();		
 	}
 }
