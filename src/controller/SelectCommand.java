@@ -39,7 +39,7 @@ public class SelectCommand implements ICommand{
 	public void run() {
 		for(IShapes shape : masterList.getShapeList()) {
 			if(isSelected(shape)) {
-				shape.select();	
+				//shape.select();	
 				selectedList.add(shape);
 				selectedList.notifyObservers();
 			}
