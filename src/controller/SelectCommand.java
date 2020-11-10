@@ -25,6 +25,7 @@ public class SelectCommand implements ICommand{
 		maxY = Math.max(start.getY(), end.getY());	
 
 		refresh();
+		
 	}
 
 	private void refresh() {
@@ -54,7 +55,7 @@ public class SelectCommand implements ICommand{
 				&& shapeMaxX >= minX
 				&& shapeMinY <= maxY 
 				&& shapeMaxY >= minY
-				) return true;
+		   ) return true;
 
 		return false;
 	}

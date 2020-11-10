@@ -8,7 +8,6 @@ import model.interfaces.IShapes;
 public class CopiedList implements IShapeList {
 	
 	private ArrayList<IShapes> clipboard;
-	//private IShapeList selectedList;
 	
 	public CopiedList() {
 		clipboard = new ArrayList<IShapes>();
