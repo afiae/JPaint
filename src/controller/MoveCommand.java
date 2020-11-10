@@ -18,14 +18,15 @@ public class MoveCommand implements ICommand, IUndoable{
 		CommandHistory.add(this);
 	}
 
-
 	public void run() { 
 		//if not same point by click
 		if(!(dx == 0 && dy == 0)) { 
-			for(IShapes s : selectedList.getShapeList())
+			for(IShapes s : selectedList.getShapeList()) {
 				s.move(dx, dy);
+			}
+			selectedList.notifyObservers();
 		}
-		selectedList.notifyObservers();
+		return;
 	}
 
 	@Override
@@ -39,6 +40,9 @@ public class MoveCommand implements ICommand, IUndoable{
 
 	@Override
 	public void redo() {
-		run();
+		for(IShapes s: selectedList.getShapeList()) {
+			s.move(dx, dy);
+		}
+		selectedList.notifyObservers();
 	} 
 }

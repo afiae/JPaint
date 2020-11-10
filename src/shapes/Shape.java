@@ -2,6 +2,7 @@ package shapes;
 
 import controller.interfaces.IShapeConfiguration;
 import model.ShapeType;
+import model.interfaces.IShapeList;
 import model.interfaces.IShapes;
 import point.Point;
 
@@ -10,8 +11,6 @@ public class Shape implements IShapes {
 	private int ht, wd;
 	private Point start, end;
 	private IShapeConfiguration shapeConfig;	
-	private int dx, dy;
-
 	boolean isSelected;
 
 	public Shape (Point a, Point b, IShapeConfiguration config) {
@@ -30,10 +29,8 @@ public class Shape implements IShapes {
 	public void deselect() { isSelected = false; }
 
 	@Override
-	public void move(int x, int y) {
-		dx = x; 
-		dy = y;		
-		Point newStart = new Point (start.getX()+dx, start.getX()+dy);
+	public void move(int dx, int dy) {	
+		Point newStart = new Point (start.getX()+dx, start.getY()+dy);
 		Point newEnd = new Point(end.getX()+dx, end.getY()+dy);
 		start = newStart;
 		end = newEnd;
@@ -57,5 +54,11 @@ public class Shape implements IShapes {
 
 	public int getEndY() { return end.getY(); }
 	
-	public boolean isSelected() { return isSelected; } 
+	public boolean isSelected() { return isSelected; }
+
+	@Override
+	public boolean isGroup() { return false; }
+
+	@Override
+	public IShapeList getGroupList() { return null; } 
 }

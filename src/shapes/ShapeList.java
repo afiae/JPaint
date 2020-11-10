@@ -1,7 +1,7 @@
 package shapes;
 
 import java.util.ArrayList;
-import model.interfaces.IShapeDrawer;
+import controller.UpdateCanvas;
 import model.interfaces.IShapeList;
 import model.interfaces.IShapes;
 import view.interfaces.PaintCanvasBase;
@@ -35,16 +35,12 @@ public class ShapeList implements IShapeList {
 	}
 	
 	public void notifyObservers() {
-		IShapeDrawer sd = new ShapeDrawer(paintCanvas);
-		sd.draw(this);		
-		sd = new OutlineSelectedShape(paintCanvas);
-		sd.draw(this);
+		UpdateCanvas us = new UpdateCanvas(paintCanvas);
+		us.update(this);
 	}	
 
 	public ArrayList<IShapes> getShapeList() { return masterList; }
 
 	@Override
-	public void emptyList() {
-		masterList.clear();		
-	}
+	public void emptyList() { masterList.clear(); }
 }

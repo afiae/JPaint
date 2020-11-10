@@ -1,7 +1,7 @@
 package shapes;
 
 import java.awt.Color;
-
+import controller.ColorSingleton;
 import controller.interfaces.IShapeConfiguration;
 import model.ShapeColor;
 import model.ShapeShadingType;
@@ -15,8 +15,8 @@ public class ShapeConfiguration implements IShapeConfiguration {
 	
 	public ShapeConfiguration(ShapeType st, ShapeShadingType sst, ShapeColor pri, ShapeColor sec) {
 		shape_type = st;
-		primary = ShapeColor.getColor(pri);
-		secondary = ShapeColor.getColor(sec);
+		primary = ColorSingleton.getColor(pri);
+		secondary = ColorSingleton.getColor(sec);		
 		SST = sst;
 	}	
 	
@@ -26,9 +26,5 @@ public class ShapeConfiguration implements IShapeConfiguration {
 	
 	public Color getPrimaryColor() { return primary; }
 	
-	public Color getSecondaryColor() { return secondary; }
-	
-	
-	
-	
+	public Color getSecondaryColor() { return secondary; }	
 }

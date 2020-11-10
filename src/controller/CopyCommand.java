@@ -11,12 +11,16 @@ public class CopyCommand implements ICommand{
 	public CopyCommand(IShapeList clipboard, IShapeList selectedList) {
 		this.clipboard = clipboard; 
 		this.selectedList = selectedList;
+		clipboard.emptyList();
 	}
 
 	@Override
 	public void run() {
 		for(IShapes shape : selectedList.getShapeList()) {	
 			clipboard.add(shape);
+			
+			//if(shape.isGroup()) System.out.println("added group");
+			//else System.out.println("added shape");
 		}
 	}
 }
