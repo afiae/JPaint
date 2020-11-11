@@ -9,11 +9,8 @@ public class CopiedList implements IShapeList {
 	
 	private ArrayList<IShapes> clipboard;
 	
-	public CopiedList(IShapeList selectedShapes) {
+	public CopiedList() {
 		clipboard = new ArrayList<IShapes>();
-		for(IShapes s : selectedShapes.getShapeList()) {
-			add(s);
-		}
 	}
 
 	@Override
