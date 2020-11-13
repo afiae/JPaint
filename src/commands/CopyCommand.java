@@ -1,4 +1,4 @@
-package controller;
+package commands;
 
 import controller.interfaces.ICommand;
 import model.interfaces.IShapeList;
@@ -18,9 +18,6 @@ public class CopyCommand implements ICommand{
 	public void run() {
 		for(IShapes shape : selectedList.getShapeList()) {	
 			clipboard.add(shape);
-			
-			//if(shape.isGroup()) System.out.println("added group");
-			//else System.out.println("added shape");
 		}
 	}
 }

@@ -1,4 +1,4 @@
-package shapes;
+package lists;
 
 import java.util.ArrayList;
 import model.interfaces.IShapeList;
@@ -18,14 +18,14 @@ public class SelectedShapeList implements IShapeList{
 	public void add(IShapes shape) {
 		shape.select();
 		selectedShapes.add(shape);
-		notifyObservers();
+		//notifyObservers();
 	}
 
 	@Override
 	public void remove(IShapes shape) {
 		shape.deselect();
 		selectedShapes.remove(shape);
-		notifyObservers();
+		//notifyObservers();
 	}
 
 	@Override

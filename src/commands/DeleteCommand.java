@@ -1,4 +1,4 @@
-package controller;
+package commands;
 
 import controller.interfaces.ICommand;
 import controller.interfaces.IUndoable;
@@ -17,8 +17,10 @@ public class DeleteCommand implements ICommand, IUndoable {
 	
 	@Override
 	public void run() {
-		for(IShapes shape : selectedList.getShapeList())
+		for(IShapes shape : selectedList.getShapeList()) {
 			masterList.remove(shape);
+		}
+		masterList.notifyObservers();
 	}
 
 	@Override
@@ -26,6 +28,7 @@ public class DeleteCommand implements ICommand, IUndoable {
 		for(IShapes shape : selectedList.getShapeList()) {
 			masterList.add(shape);
 		}
+		masterList.notifyObservers();
 	}
 	
 	@Override

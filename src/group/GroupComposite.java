@@ -1,6 +1,7 @@
-package shapes;
+package group;
 
 import controller.interfaces.IShapeConfiguration;
+import lists.GroupList;
 import model.interfaces.IShapeList;
 import model.interfaces.IShapes;
 import point.Point;

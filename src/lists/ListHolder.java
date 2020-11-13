@@ -1,9 +1,6 @@
-package controller;
+package lists;
 
 import model.interfaces.IShapeList;
-import shapes.CopiedList;
-import shapes.SelectedShapeList;
-import shapes.ShapeList;
 import view.interfaces.PaintCanvasBase;
 
 public class ListHolder {
@@ -18,7 +15,7 @@ public class ListHolder {
 		selectedList = new SelectedShapeList(masterList);
 		clipboard = new CopiedList();		
 		//this isn't really used, however, the Decorator pattern is observed
-		//allLists = new CopiedList(new SelectedShapeList( new ShapeList(paintCanvas)));
+		//allLists  = new SelectedShapeList( new ShapeList(paintCanvas)));
 		
 	}
 

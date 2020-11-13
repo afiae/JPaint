@@ -1,9 +1,9 @@
 package controller;
 
+import draw.OutlineSelectedShape;
+import draw.ShapeDrawer;
 import model.interfaces.IShapeDrawer;
 import model.interfaces.IShapeList;
-import shapes.OutlineSelectedShape;
-import shapes.ShapeDrawer;
 import view.interfaces.PaintCanvasBase;
 
 public class UpdateCanvas {

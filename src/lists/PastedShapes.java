@@ -1,4 +1,4 @@
-package shapes;
+package lists;
 
 import java.util.ArrayList;
 
@@ -18,13 +18,13 @@ public class PastedShapes implements IShapeList {
 	@Override
 	public void add(IShapes shape) { 
 		pastedShapes.add(shape); 
-		notifyObservers();
+		//notifyObservers();
 	}
 
 	@Override
 	public void remove(IShapes shape) { 
 		pastedShapes.remove(shape); 
-		notifyObservers();
+		//notifyObservers();
 	}
 
 	@Override
