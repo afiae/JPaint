@@ -1,4 +1,4 @@
-package controller;
+package commands;
 
 import controller.interfaces.ICommand;
 import controller.interfaces.IUndoable;
@@ -24,8 +24,8 @@ public class MoveCommand implements ICommand, IUndoable{
 			for(IShapes s : selectedList.getShapeList()) {
 				s.move(dx, dy);
 			}
-			selectedList.notifyObservers();
 		}
+		selectedList.notifyObservers();
 		return;
 	}
 
@@ -39,10 +39,5 @@ public class MoveCommand implements ICommand, IUndoable{
 	}
 
 	@Override
-	public void redo() {
-		for(IShapes s: selectedList.getShapeList()) {
-			s.move(dx, dy);
-		}
-		selectedList.notifyObservers();
-	} 
+	public void redo() { run(); } 
 }

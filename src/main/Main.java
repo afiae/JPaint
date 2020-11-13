@@ -2,8 +2,8 @@ package main;
 
 import controller.IJPaintController;
 import controller.JPaintController;
-import controller.ListHolder;
 import controller.MouseHandler;
+import lists.ListHolder;
 import model.persistence.ApplicationState;
 import view.gui.Gui;
 import view.gui.GuiWindow;

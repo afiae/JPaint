@@ -3,6 +3,9 @@ package controller;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import commands.CreateShapeCommand;
+import commands.MoveCommand;
+import commands.SelectCommand;
 import controller.interfaces.ICommand;
 import controller.interfaces.IShapeConfiguration;
 import model.interfaces.IShapeList;

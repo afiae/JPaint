@@ -1,10 +1,10 @@
-package controller;
+package commands;
 import controller.interfaces.ICommand;
 import controller.interfaces.IUndoable;
+import group.GroupComposite;
 import model.interfaces.IShapeList;
 import model.interfaces.IShapes;
 import point.Point;
-import shapes.GroupComposite;
 
 public class GroupCommand implements ICommand, IUndoable {
 
@@ -45,7 +45,7 @@ public class GroupCommand implements ICommand, IUndoable {
 		selectedList.emptyList();
 		selectedList.add(group);
 		masterList.add(group); // should set call to update canvas
-		CommandHistory.add(this);		
+		masterList.notifyObservers();
 	}
 	
 	@Override
@@ -57,6 +57,7 @@ public class GroupCommand implements ICommand, IUndoable {
 		group.getGroupList().emptyList();
 		masterList.remove(group);
 		selectedList.remove(group);	
+		masterList.notifyObservers();
 	}
 	
 	@Override
