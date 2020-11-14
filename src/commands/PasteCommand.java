@@ -3,8 +3,7 @@ package commands;
 import controller.interfaces.ICommand;
 import controller.interfaces.IUndoable;
 import group.GroupComposite;
-import lists.GroupList;
-import lists.PastedShapes;
+import lists.SimpleList;
 import model.interfaces.IShapeList;
 import model.interfaces.IShapes;
 import point.Point;
@@ -18,7 +17,7 @@ public class PasteCommand implements IUndoable, ICommand {
 	public PasteCommand(IShapeList clipboard, IShapeList masterList) {
 		this.clipboard = clipboard;
 		this.masterList = masterList;
-		this.pastedShapes = new PastedShapes(masterList);
+		this.pastedShapes = new SimpleList();
 		CommandHistory.add(this);
 	}
 
@@ -46,7 +45,7 @@ public class PasteCommand implements IUndoable, ICommand {
 
 	private IShapeList copyGroupList(IShapes group) {
 		IShapeList oldGroup = group.getGroupList();
-		IShapeList newGroup = new GroupList();
+		IShapeList newGroup = new SimpleList();
 
 		for(IShapes s: oldGroup.getShapeList()) {
 			if(s.isGroup()) {

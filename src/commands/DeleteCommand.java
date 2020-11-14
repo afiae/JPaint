@@ -2,7 +2,7 @@ package commands;
 
 import controller.interfaces.ICommand;
 import controller.interfaces.IUndoable;
-import lists.GroupList;
+import lists.SimpleList;
 import model.interfaces.IShapeList;
 import model.interfaces.IShapes;
 
@@ -13,7 +13,7 @@ public class DeleteCommand implements ICommand, IUndoable {
 	public DeleteCommand(IShapeList masterList, IShapeList selectedList) {
 		this.masterList = masterList;
 		this.selectedList = selectedList;
-		this.deletedList = new GroupList();
+		this.deletedList = new SimpleList();
 		CommandHistory.add(this);
 	}
 	

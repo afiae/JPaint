@@ -1,7 +1,7 @@
 package group;
 
 import controller.interfaces.IShapeConfiguration;
-import lists.GroupList;
+import lists.SimpleList;
 import model.interfaces.IShapeList;
 import model.interfaces.IShapes;
 import point.Point;
@@ -26,7 +26,7 @@ public class GroupComposite implements IShapes {
 		config = new GroupConfiguration();
 		//this.selectedList = selectedList;		
 		
-		group = new GroupList();
+		group = new SimpleList();
 		for(IShapes s: selectedList.getShapeList()) {
 			group.add(s);
 		}		
