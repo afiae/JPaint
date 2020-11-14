@@ -2,7 +2,7 @@ package commands;
 
 import controller.interfaces.ICommand;
 import controller.interfaces.IUndoable;
-import lists.GroupList;
+import lists.SimpleList;
 import model.interfaces.IShapeList;
 import model.interfaces.IShapes;
 
@@ -22,7 +22,7 @@ public class UngroupCommand implements ICommand, IUndoable {
 		
 		if(size < 1) return;
 		
-		formerGroup = new GroupList();
+		formerGroup = new SimpleList();
 		
 		for(int i = size-1; i >= 0; i--) {
 			IShapes s = selectedList.getShapeList().get(i);

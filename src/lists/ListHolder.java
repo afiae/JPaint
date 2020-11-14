@@ -13,7 +13,7 @@ public class ListHolder {
 	public ListHolder(PaintCanvasBase paintCanvas) {
 		masterList = new ShapeList(paintCanvas);
 		selectedList = new SelectedShapeList(masterList);
-		clipboard = new CopiedList();		
+		clipboard = new SimpleList();		
 		//this isn't really used, however, the Decorator pattern is observed
 		//allLists  = new SelectedShapeList( new ShapeList(paintCanvas)));
 		

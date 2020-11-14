@@ -2,7 +2,7 @@ package commands;
 import controller.interfaces.ICommand;
 import controller.interfaces.IUndoable;
 import group.GroupComposite;
-import lists.GroupList;
+import lists.SimpleList;
 import model.interfaces.IShapeList;
 import model.interfaces.IShapes;
 import point.Point;
@@ -18,15 +18,14 @@ public class GroupCommand implements ICommand, IUndoable {
 	public GroupCommand (IShapeList masterList, IShapeList selectedList) {
 		this.selectedList = selectedList;		
 		this.masterList = masterList;
-		groupList = new GroupList();
-		undoList = new GroupList();
+		groupList = new SimpleList();
+		undoList = new SimpleList();
 		CommandHistory.add(this);
 	}
 
 	@Override
 	public void run() {	
-		if(selectedList.getShapeList().size() < 1 ) return;
-		
+		if(selectedList.getShapeList().size() < 1 ) return;		
 		group = getGroup(selectedList);		
 		for(IShapes s: selectedList.getShapeList()) {
 			masterList.remove(s);

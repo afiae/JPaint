@@ -3,7 +3,6 @@ package draw;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import controller.interfaces.ICommand;
-import model.ShapeType;
 import model.interfaces.IShapeDrawer;
 import model.interfaces.IShapeList;
 import model.interfaces.IShapes;
