@@ -8,19 +8,22 @@ import model.interfaces.IShapes;
 
 public class UngroupCommand implements ICommand, IUndoable {
 
-	private IShapeList selectedList, masterList;
-	private IShapeList formerGroup;
+	private IShapeList selectedList, masterList, formerGroup;
 
 	public UngroupCommand(IShapeList masterList, IShapeList selectedList) {
 		this.selectedList = selectedList;
 		this.masterList = masterList;
-		formerGroup = new GroupList();
 		CommandHistory.add(this);
 	}
 
 	@Override
 	public void run() {
 		int size = selectedList.getShapeList().size();
+		
+		if(size < 1) return;
+		
+		formerGroup = new GroupList();
+		
 		for(int i = size-1; i >= 0; i--) {
 			IShapes s = selectedList.getShapeList().get(i);
 			if(s.isGroup()) {
@@ -43,7 +46,7 @@ public class UngroupCommand implements ICommand, IUndoable {
 	@Override
 	public void undo() { 
 		//all shapes in formerGroup should be groups only
-		if(formerGroup.getShapeList().size() <= 0) return;
+		if(formerGroup.getShapeList().size() < 1) return;
 		
 		for(IShapes g: formerGroup.getShapeList()) {
 			for(IShapes s: g.getGroupList().getShapeList()) {
@@ -53,6 +56,7 @@ public class UngroupCommand implements ICommand, IUndoable {
 			masterList.add(g);
 			selectedList.add(g);
 		}
+		formerGroup.emptyList();
 		masterList.notifyObservers();
 	}
 
